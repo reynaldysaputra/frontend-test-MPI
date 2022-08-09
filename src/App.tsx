@@ -1,24 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useAppDispatch, UseAppSelector } from './hooks/redux-hooks';
+import { Routes, Route } from 'react-router-dom';
+import ProtectedRoute from './components/protectedRoute';
+import UserPage from './pages/user';
+import LoginPage from './pages/login';
 
 function App() {
+  const { token } = UseAppSelector(state => state.token);
+  const dispatch = useAppDispatch();
+
+  const handleRemoveToken = () => {
+
+  }
+  console.log(token)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className='bg-black text-xl lg:text-2xl text-white text-center py-5 font-bold'>
+        Test Coding Front End by: Reynaldy <br/>
+        {token && (
+          <button 
+            className='border-2 border-white px-3 py-1 mt-4 text-sm'
+            onClick={handleRemoveToken}
+          >Logout</button>
+        )}
       </header>
+
+      <div className='w-[90%] m-auto'>
+        <Routes>
+          <Route path='/' element={<LoginPage/>} /> 
+          <Route element={<ProtectedRoute/>}>
+            <Route path='/user' element={<UserPage/>} />
+          </Route>
+        </Routes>
+      </div>
     </div>
   );
 }
