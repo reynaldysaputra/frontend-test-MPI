@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>PSBB ( Pembatasan Sosial Berskala Besar )</title>
+  </head>
+  <body>
+    <script>
+      const families = prompt("Input the number of families :");
+      const membersOfFamilies = prompt(
+        "Input the number of members in the family (separated by a space): "
+      );
+
+      let checkNumberOfMembersFamilies =
+        parseInt(families) === membersOfFamilies.split("").length;
+
+      if (checkNumberOfMembersFamilies) {
+        let totalFamilyMembers = membersOfFamilies
+          .split("")
+          .map(Number)
+          .reduce((a, b) => a + b, 0);
+
+        console.log(
+          "Minimum bus required is : ",
+          Math.ceil(totalFamilyMembers / 4)
+        );
+      } else {
+        console.log("Input must be equal with count of family");
+      }
+    </script>
+  </body>
+</html>

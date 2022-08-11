@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Sort Character</title>
+  </head>
+  <body>
+    <script>
+      const procVowel = ["A", "E", "I", "O", "U"];
+      const procConsonant = [
+        "B",
+        "C",
+        "D",
+        "F",
+        "G",
+        "H",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z"
+      ];
+
+      function vowelsSort(params) {
+        const parseParams = params.toUpperCase().split("");
+        return parseParams.filter((value) => procVowel.includes(value));
+      }
+
+      function consonantSort(params) {
+        const parseParams = params.toUpperCase().split("");
+        return parseParams.filter((value) => procConsonant.includes(value));
+      }
+
+      let question = prompt("Input one line of words (S) :");
+
+      console.log(
+        `
+          Vowel Characters: ${vowelsSort(question)}
+          Consonant Characters: ${consonantSort(question)}
+        `
+      );
+    </script>
+  </body>
+</html>

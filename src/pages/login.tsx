@@ -6,6 +6,8 @@ import Input from '../components/input';
 import { useAppDispatch, UseAppSelector } from '../hooks/redux-hooks';
 import { useLoginUserMutation } from '../slice/loginUser';
 import { addTokenUser } from '../slice/tokenUser';
+import { toast } from 'react-toastify';
+import { toastError, toastSuccess } from '../utils/toast';
 
 function LoginPage(){
   const [username, setUsername] = useState('');
@@ -22,8 +24,12 @@ function LoginPage(){
     e.preventDefault();
     mutateUser({username, password})
       .then((res: any)  => {
+        if(res.error) throw new Error(res.error.data);
         dispatch(addTokenUser({token: res.data.token}))
-        navigate("/user")
+        navigate("/user");
+        toastSuccess("Login Successful");
+      }).catch((err: any) => {
+        toastError(err);
       })
     setUsername("");
     setPassword("");

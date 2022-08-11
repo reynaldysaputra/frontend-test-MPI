@@ -9,6 +9,7 @@ const initialToken = () => {
   let tokenUser: TokenUser = {
     token: ""
   };  
+
   if(token) {
     tokenUser.token = JSON.parse(token);
   }
@@ -30,7 +31,7 @@ export const tokenUserSlice = createSlice({
     },
     removeTokenUser: (state) => {
       localStorage.removeItem('tokenUser');
-      state.token = JSON.stringify(localStorage.getItem('tokenUser'));
+      state.token = "";
     }
   }
 })

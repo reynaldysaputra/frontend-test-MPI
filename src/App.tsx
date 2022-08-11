@@ -1,17 +1,19 @@
 import { useAppDispatch, UseAppSelector } from './hooks/redux-hooks';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import ProtectedRoute from './components/protectedRoute';
 import UserPage from './pages/user';
 import LoginPage from './pages/login';
+import { removeTokenUser } from './slice/tokenUser';
 
 function App() {
   const { token } = UseAppSelector(state => state.token);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleRemoveToken = () => {
-
+    dispatch(removeTokenUser());
+    navigate("/");
   }
-  console.log(token)
 
   return (
     <div className="App">
